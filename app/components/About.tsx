@@ -3,12 +3,35 @@ import Image from "next/image";
 import styled from "styled-components"
 import AboutPhoto from "@/public/about.png"
 import ShapePhoto from '@/public/shape-about-two.png'
+import { useScroll } from "./useScroll";
+import { useEffect, useRef, useState } from "react";
+import { Slide } from "@mui/material";
 
 export default function About(){
+    const { scrollPosition } = useScroll()
+    const t = useRef<HTMLDivElement>(null)
+    const [checked, setChecked] = useState(false)
+    let positionY: number
+
+    if (t.current !== null) {
+        positionY = t.current.offsetTop
+      }
+     useEffect(() => {
+        if(positionY < (scrollPosition + 400)){
+            setChecked(true)
+        }
+     },[scrollPosition]) 
     return (
         <>
         <Shape src={ShapePhoto} alt="Sul Minas" />
-        <Container>
+
+        <Slide 
+            direction="up" 
+            in={checked} 
+            // style={{ transitionDelay: checked ? '500ms' : '0ms' }}
+            {...(checked ? { timeout: 1000 } : {})}
+            >
+        <Container id="sobre-nos" ref={t}>
             <div className="description">
                 <h2>Sobre nós</h2>
                 <p> A Sul Minas Bebedouros, localizada no sul catarinense,
@@ -29,6 +52,7 @@ export default function About(){
             </div>
             <Img src={AboutPhoto} alt="Sul Minas - Sobre Nós"  />
         </Container>
+        </Slide>
         </>
     )
 }
@@ -41,6 +65,7 @@ const Container = styled.section`
     color: #fff;
     flex-wrap: wrap;
 
+    
     .description {
         max-width: 500px;
         margin-right: 40px;

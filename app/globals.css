@@ -43,5 +43,6 @@
   margin: 0;
   text-decoration: none;
   font-family: "Montserrat";
+  scroll-behavior: smooth;
 }
 

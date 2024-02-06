@@ -41,6 +41,7 @@ export const Link = styled.a`
     color: #fff;
     cursor: pointer;
     padding: 10px;
+    font-weight: 600;
     font-size: 14px;
 `
 
@@ -56,9 +57,11 @@ export const ButtonHeader = styled.a`
     color: #fff;
     border: 1px solid #07333d;
     transition: 0.2s linear;
+    font-weight: 600;
+    border-radius: 50px;
 
     &:hover {
-        color: #6ef2b8;
+        color: #07333d;
         background-color: transparent;
     }
 `

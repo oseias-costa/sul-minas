@@ -5,12 +5,33 @@ import Termostato from '@/public/termostato.png'
 import Economia from '@/public/economia.png'
 import Resistencia from '@/public/resistencia.png'
 import Garantia from '@/public/garantia.png'
-import { useRef } from "react";
+import { useScroll } from "./useScroll";
+import { useEffect, useRef, useState } from "react";
+import { Slide, Zoom } from "@mui/material";
 
 export default function Inovation(){
-    
+    const { scrollPosition } = useScroll()
+    const t = useRef<HTMLDivElement>(null)
+    const [checked, setChecked] = useState(false)
+    let positionY: number
+
+    if (t.current !== null) {
+        positionY = t.current.offsetTop
+      }
+     useEffect(() => {
+        if(positionY < (scrollPosition + 400)){
+            setChecked(true)
+        }
+     },[scrollPosition]) 
+
     return(
-        <Container>
+        <Slide 
+            direction="up" 
+            in={checked} 
+            // style={{ transitionDelay: checked ? '500ms' : '0ms' }}
+            {...(checked ? { timeout: 1000 } : {})}
+        >
+        <Container id="inovacao" ref={t}>
             <h2>Inovação</h2>
             <h3>Qualidade como você nunca viu!</h3>
             <div className="items">
@@ -37,6 +58,7 @@ export default function Inovation(){
             </div>
    
         </Container>
+        </Slide>
     )
 }
 

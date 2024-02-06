@@ -10,10 +10,10 @@ export default function Header(){
             <Logo src={LogoImage} alt="Logo Emagecentro - Centro Especializado em Emagrecimento e Saúde" />
             <Menu>
                 <Nav>
-                    <Link>Inovação</Link>
-                    <Link>sobre nós</Link>
-                    <Link>nosso trabalho</Link>
-                    <Link>contanto</Link>
+                    <Link href="#inovacao">Inovação</Link>
+                    <Link href="#sobre-nos">sobre nós</Link>
+                    <Link href="#nosso-trabalho">nosso trabalho</Link>
+                    <Link href="#contato">contanto</Link>
                 </Nav>
                 <ButtonHeader>Solicitar Orçamento</ButtonHeader>
                 <SocialMidia>

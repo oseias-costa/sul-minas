@@ -8,10 +8,33 @@ import KF02 from '@/public/KF02.png'
 import KF05 from '@/public/KF05.png'
 import KF10 from '@/public/KF10.png'
 import Shape from '@/public/shape-works.png'
+import CubaPhoto from '@/public/cuba.png'
+import { useEffect, useRef, useState } from "react";
+import { useScroll } from "./useScroll";
+import { Slide } from "@mui/material";
 
 export default function Products(){
+    const { scrollPosition } = useScroll()
+    const t = useRef<HTMLDivElement>(null)
+    const [checked, setChecked] = useState(false)
+    let positionY: number
+
+    if (t.current !== null) {
+        positionY = t.current.offsetTop
+      }
+     useEffect(() => {
+        if(positionY < (scrollPosition + 400)){
+            setChecked(true)
+        }
+     },[scrollPosition]) 
+
     return(
-        <Container>
+        <Slide 
+            direction="up" 
+            in={checked} 
+            {...(checked ? { timeout: 1000 } : {})}
+        >
+        <Container id="nosso-trabalho" ref={t}>
             <h2>Trabalhamos com</h2>
             <div className="block">
                 <WorkItem>
@@ -24,11 +47,11 @@ export default function Products(){
                     <h3>Filtros</h3>
                     <p>Filtros de alta qualidade para bebedouros</p>
                 </WorkItem>
-                <WorkItem>
-                    <Img src={Filtro} alt="Sul Minas - Instalação" />
-                    <h3>Instalação</h3>
-                    <p>Entregamos seu bebedouro instalado e pronto para uso!</p>
-                </WorkItem>
+                <CubaItem>
+                    <Cuba src={CubaPhoto} alt="Sul Minas - Instalação" />
+                    <h3>Cuba</h3>
+                    <p>Produtos resistentes de alta durabilidade!</p>
+                </CubaItem>
             </div>
             <h2>Bebedouros</h2>
             <div className="block">
@@ -56,6 +79,7 @@ export default function Products(){
             <a>Solicitar orçamento</a>
             <Image style={{width: "100%", height: "auto"}} src={Shape} alt="Sul Minas - Orçamento" />
         </Container>
+        </Slide>
     )
 }
 
@@ -79,6 +103,7 @@ const Container = styled.section`
         text-align: center;
         margin: 20px;
         padding-bottom: 20px;
+        flex-wrap: wrap;
 
         @media(max-width: 740px){
             flex-wrap: wrap;
@@ -87,24 +112,32 @@ const Container = styled.section`
 
     a {
         background-color: #006E84;
-        position: relative;
-        color: #fff;
-        font-size: 28px;
-        font-weight: 700;
-        border-bottom: 1px solid #006E84;
-        border-radius: 70px;
-        padding-left: 80px;
-        padding-right: 80px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: center;
-        position: relative;
+            position: relative;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            border: 4px solid #006E84;
+            border-radius: 70px;
+            padding-left: 60px;
+            padding-right: 60px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            position: relative;
+            transition: 0.2s linear;
+            cursor: pointer;
 
-        @media(max-width: 800px){
-            padding-left: 40px;
-            padding-right: 40px;
-            margin-left: 20px;
-            margin-right: 20px;
+            &:hover {
+                color: #fff;
+                background-color: transparent;
+            }
+    
+            @media(max-width: 800px){
+                padding-left: 40px;
+                padding-right: 40px;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
         }
     }
 
@@ -130,6 +163,10 @@ const WorkItem = styled.div`
         margin: 0 auto;
         font-size: 18px;
     }
+    img {
+        aspect-ratio: 3/3;
+        object-fit: contain;
+    }
 `
 
 const Beb = styled.div`
@@ -151,11 +188,27 @@ const Beb = styled.div`
     }
 `
 
+const CubaItem = styled(WorkItem)`
+    position: relative;
+    bottom: 80px;
+`
+
 
 const Img = styled(Image)`
-    width: 250px;
+    width: ${props => props.width ? props.width : "250px"};
     height: auto;
     margin-bottom: 12px;
+
+    @media(max-width: 740px){
+        width: 100%;
+    }
+`
+
+const Cuba = styled(Image)`
+    width: 350px;
+    height: auto;
+    position: relative;
+    bottom: 40px;
 
     @media(max-width: 740px){
         width: 100%;

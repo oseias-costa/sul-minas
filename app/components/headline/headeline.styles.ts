@@ -2,20 +2,21 @@ import Image from "next/image";
 import { styled } from "styled-components";
 
 export const HeadlineContainer = styled.section`
-    display: flex;
-    background-color: #01408f;
-    justify-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 60px;
-    padding-top: 153.36px;
-    position: relative;
-    z-index: 1;
-
-    @media(max-width: 800px){
-        flex-wrap: wrap-reverse;
+    .body {
+        display: flex;
+        justify-content: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 60px;
+        padding-top: 153.36px;
+        position: relative;
+        z-index: 1;
+        
+        @media(max-width: 800px){
+            flex-wrap: wrap-reverse;
+        }
     }
-`
+        `
 
 export const Content = styled.div`
    max-width: 600px;
@@ -64,20 +65,30 @@ export const ButtonHeadline = styled.a`
     background-color: #07333d;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-right: 7px;
-    padding-left: 7px;
+    border-radius: 70px;
+    padding-left: 40px;
+    padding-right: 40px;
     margin-top: 10px;
     border-radius: 6px;
     cursor: pointer;
     color: #fff;
-    border: 1px solid #07333d;
+    border: 3px solid #07333d;
     transition: 0.2s linear;
     font-weight: 600;
     text-transform: uppercase;
+    border-radius: 50px;
+    font-size: 20px;
 
     &:hover {
         color: #07333d;
         background-color: transparent;
+    }
+
+    @media(max-width: 800px){
+        padding-left: 40px;
+        padding-right: 40px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 `
 
@@ -85,6 +96,10 @@ export const ImgHeadline = styled(Image)`
     width: 600px;
     height: auto;
     position: relative;
+
+    @media(max-width: 1100px){
+        width: 400px;
+    }
 
     @media(max-width: 800px){
         width: 100%;

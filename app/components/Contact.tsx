@@ -2,18 +2,41 @@
 import styled from "styled-components"
 import ImageBrasil from "@/public/mapa.png"
 import Image from "next/image"
+import { useScroll } from "./useScroll";
+import { useEffect, useRef, useState } from "react";
+import { Slide } from "@mui/material";
 
 export default function Contact(){
+    const { scrollPosition } = useScroll()
+    const t = useRef<HTMLDivElement>(null)
+    const [checked, setChecked] = useState(false)
+    let positionY: number
+
+    if (t.current !== null) {
+        positionY = t.current.offsetTop
+      }
+     useEffect(() => {
+        if(positionY < (scrollPosition + 400)){
+            setChecked(true)
+        }
+     },[scrollPosition]) 
+
     return(
-        <Container>
+        <Slide 
+            direction="up" 
+            in={checked} 
+            {...(checked ? { timeout: 1000 } : {})}
+        >
+        <Container id="contato" ref={t}>
             <div className="description">
                 <h2>Enviamos para todo o Brasil!</h2>
-                <h3>email@sulminas.com.br</h3>
-                <p>(XX) X XXXX-XXXX</p>
+                <h3>sulminasbebedouros@gmail.com</h3>
+                <p>(48) 9 9135-3109</p>
                 <a>Solicitar orçamento</a>
             </div>
             <Img src={ImageBrasil} alt="Sul Minas - Contato" />
         </Container>
+        </Slide>
     )
 }
 
@@ -45,14 +68,13 @@ const Container = styled.section`
             padding-bottom: 40px;
         }
 
-        a {
-            
+        a { 
             background-color: #006E84;
             position: relative;
             color: #fff;
             font-size: 28px;
             font-weight: 700;
-            border-bottom: 1px solid #006E84;
+            border: 4px solid #006E84;
             border-radius: 70px;
             padding-left: 60px;
             padding-right: 60px;
@@ -60,7 +82,13 @@ const Container = styled.section`
             padding-bottom: 12px;
             text-align: center;
             position: relative;
-            transitio: 0.2s linear;
+            transition: 0.2s linear;
+            cursor: pointer;
+
+            &:hover {
+                color: #006E84;
+                background-color: transparent;
+            }
     
             @media(max-width: 800px){
                 padding-left: 40px;

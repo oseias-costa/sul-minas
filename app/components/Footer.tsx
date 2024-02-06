@@ -4,14 +4,23 @@ import { styled } from "styled-components";
 import LogoImg from '@/public/logo.png';
 import Instagram from "@/public/instagram.svg";
 import Whatsapp from '@/public/whatsapp.svg';
+import { contact } from "./data";
 
 export default function Footer(){
     return(
         <FooterContainer>
             <div className='Footer__Item'>
                 <Logo src={LogoImg} alt="Logo Sul Minas" />
-                <p>email@sulminas.com.br</p>
-                <p>(xx) x xxxx-xxxx</p>
+            </div>
+            <div className='Footer__Item-nav'>
+                <a href='#inovacao'>Inovação</a>
+                <a href='#sobre-nos'>Sobre nós</a>
+                <a href='#nossos-trabalho'>Nosso trabalho</a>
+                <a href='#contato'>Contato</a>
+            </div>
+            <div className='Footer__Item'>
+            <p>sulminasbebedouros@gmail.com</p>
+                <p>(48) 9 9135-3109</p>
                 <div className="social">
                     <IconBox>
                     <a href='#' target='_blank'>
@@ -19,26 +28,10 @@ export default function Footer(){
                     </a>
                     </IconBox>
                     <IconBox>
-                    <a href='#' target='_blanck'>
+                    <a href={contact.whatsapp} target='_blanck'>
                         <Icon src={Whatsapp} alt='Instagram Sul Minas' className='Footer__Item-social' />
                     </a>
                     </IconBox>
-                </div>
-            </div>
-            <div className='Footer__Item-nav'>
-                <a href='#'>Início</a>
-                <a href='#Como-Funciona'>Como Funciona</a>
-                <a href='#Nossos-Serviços'>Serviços</a>
-                <a href='#Resultados'>Clientes</a>
-            </div>
-            <div className='Footer__Item'>
-                <div className='Footer__Item-adress'>
-                    <p>Unidade 1</p>
-                    <p>R. Gustavo Barroso, 195. Passo Fundo-RS</p>
-                </div>
-                <div className='Footer__Item-adress'>
-                    <p>Unidade 2</p>
-                    <p>Vila Moema. Tubarão-SC</p>
                 </div>
             </div>
         </FooterContainer>
@@ -73,7 +66,7 @@ export const FooterContainer = styled.footer`
     transition: .1s linear;
 
     &:hover {
-        color: #794efe;
+        color: #006E84;
     }
 }
 
@@ -110,7 +103,7 @@ export const FooterContainer = styled.footer`
 `
 
 export const Logo = styled(Image)`
-  height: 100px;
+  height: 110px;
   width: auto;
   margin-bottom: 15px;
 `;

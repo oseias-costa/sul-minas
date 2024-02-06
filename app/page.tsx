@@ -8,23 +8,10 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Whatsapp from './components/Whatsapp'
 import { useEffect, useRef, useState } from 'react'
+import { useScroll } from './components/useScroll';
 
 export default function Home() {
- const [scrollPosition, setScrollPosition] = useState(0);
-const handleScroll = () => {
-    const position = window.pageYOffset;
-    setScrollPosition(position);
-};
-
-useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-        window.removeEventListener('scroll', handleScroll);
-    };
-}, []);
-
-console.log(scrollPosition)
+const { scrollPosition } = useScroll()
 
   return (
     <main>
@@ -32,10 +19,10 @@ console.log(scrollPosition)
       <Header />
       <Headline />
       <Inovation />
-      <About />
-      <Products />
-      <Contact />
-      <Footer />
+      <About  />
+      <Products  />
+      <Contact  />
+      <Footer  />
     </main>
   )
 }
