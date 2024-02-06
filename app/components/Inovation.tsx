@@ -5,8 +5,10 @@ import Termostato from '@/public/termostato.png'
 import Economia from '@/public/economia.png'
 import Resistencia from '@/public/resistencia.png'
 import Garantia from '@/public/garantia.png'
+import { useRef } from "react";
 
 export default function Inovation(){
+    
     return(
         <Container>
             <h2>Inovação</h2>
