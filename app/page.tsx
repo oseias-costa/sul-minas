@@ -7,7 +7,6 @@ import Products from './components/Products'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import Whatsapp from './components/Whatsapp'
-import { useEffect, useRef, useState } from 'react'
 import { useScroll } from './components/useScroll';
 
 export default function Home() {

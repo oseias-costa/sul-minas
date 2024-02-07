@@ -2,25 +2,29 @@ import Image from "next/image";
 import { styled } from "styled-components";
 
 export const HeadlineContainer = styled.section`
-    .body {
+        padding-bottom: 60px;
         display: flex;
         justify-content: center;
         padding-left: 20px;
         padding-right: 20px;
-        padding-bottom: 60px;
         padding-top: 153.36px;
         position: relative;
         z-index: 1;
         
         @media(max-width: 800px){
             flex-wrap: wrap-reverse;
+            text-align: center;
         }
-    }
         `
 
 export const Content = styled.div`
    max-width: 600px;
    position: relative;
+   left: 60px;
+
+   @media(max-width: 800px){
+    left: 0px;
+   }
 `
 
 export const Img = styled(Image)`
@@ -85,10 +89,9 @@ export const ButtonHeadline = styled.a`
     }
 
     @media(max-width: 800px){
-        padding-left: 40px;
-        padding-right: 40px;
-        margin-left: 20px;
-        margin-right: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+        display: block;
     }
 `
 
@@ -96,14 +99,17 @@ export const ImgHeadline = styled(Image)`
     width: 600px;
     height: auto;
     position: relative;
+    right: 60px;
 
     @media(max-width: 1100px){
         width: 400px;
+
     }
 
     @media(max-width: 800px){
         width: 100%;
         height: auto;
+        right: 0px;
     }
 `
 

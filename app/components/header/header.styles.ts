@@ -14,7 +14,7 @@ export const BenefitsContainer = styled.header`
 `
 
 export const Logo = styled(Image)`
-    width: 130px;
+    width: 140px;
     height: auto;
 
     @media(max-width: 800px){
@@ -55,7 +55,7 @@ export const ButtonHeader = styled.a`
     margin-left: 20px;
     margin-right: 20px;
     color: #fff;
-    border: 1px solid #07333d;
+    border: 3px solid #07333d;
     transition: 0.2s linear;
     font-weight: 600;
     border-radius: 50px;
@@ -73,7 +73,7 @@ export const SocialMidia = styled.div`
 export const Icon = styled(Image)`
 
 ` 
-export const IconBox = styled.div`
+export const IconBox = styled.a`
     border-radius: 120px;
     background-color: #07333d;
     width: 44px;

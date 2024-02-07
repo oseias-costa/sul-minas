@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
 import styled from "styled-components"
-import Termostato from '@/public/termostato.png'
-import Economia from '@/public/economia.png'
-import Resistencia from '@/public/resistencia.png'
-import Garantia from '@/public/garantia.png'
+import Termostato from '@/public/img/termostato.png'
+import Economia from '@/public/img/economia.png'
+import Resistencia from '@/public/img/resistencia.png'
+import Garantia from '@/public/img/garantia.png'
 import { useScroll } from "./useScroll";
 import { useEffect, useRef, useState } from "react";
 import { Slide, Zoom } from "@mui/material";

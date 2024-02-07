@@ -1,10 +1,11 @@
 "use client";
 import styled from "styled-components"
-import ImageBrasil from "@/public/mapa.png"
+import ImageBrasil from "@/public/img/mapa.png"
 import Image from "next/image"
 import { useScroll } from "./useScroll";
 import { useEffect, useRef, useState } from "react";
 import { Slide } from "@mui/material";
+import { contact } from "./data";
 
 export default function Contact(){
     const { scrollPosition } = useScroll()
@@ -32,7 +33,7 @@ export default function Contact(){
                 <h2>Enviamos para todo o Brasil!</h2>
                 <h3>sulminasbebedouros@gmail.com</h3>
                 <p>(48) 9 9135-3109</p>
-                <a>Solicitar orçamento</a>
+                <a href={contact.whatsapp} target="_blank">Solicitar orçamento</a>
             </div>
             <Img src={ImageBrasil} alt="Sul Minas - Contato" />
         </Container>
@@ -46,19 +47,29 @@ const Container = styled.section`
     align-items: center;
 
     .description {
-    padding-bottom: 40px;
+        padding-bottom: 40px;
         
         h2 {
             color: #006E84;
             font-size: 52px;
             font-weight: 800;
             max-width: 400px;
+
+            @media(max-width: 800px){
+                font-size: 42px;
+                text-align: center;
+            }
         }
         
         h3{
             padding-top: 20px;
             color: #0599B4;
             font-size: 28px;
+
+            @media(max-width: 800px){
+                font-size: 16px;
+                text-align: center;
+            }
         }
 
         P{
@@ -66,6 +77,10 @@ const Container = styled.section`
             font-weight: 600;
             font-size: 28px;
             padding-bottom: 40px;
+
+            @media(max-width: 800px){
+                text-align: center;
+            }
         }
 
         a { 
@@ -91,12 +106,13 @@ const Container = styled.section`
             }
     
             @media(max-width: 800px){
-                padding-left: 40px;
-                padding-right: 40px;
-                margin-left: 20px;
-                margin-right: 20px;
+                padding-left: 0px;
+                padding-right: 0px;
+                width: 100%;
+                display: block;
             }
         }
+
     }
 
     @media(max-width: 720px){

@@ -2,12 +2,13 @@
 import Image from "next/image";
 import React from "react";
 import styled from "styled-components";
-import WhatsSVG from '@/public/whatsapp-button.svg'
+import WhatsSVG from '@/public/img/whatsapp-button.svg'
+import { contact } from "./data";
 
 export default function Whatsapp() {
   return (
     <Whats>
-      <a href="" target="_blank">
+      <a href={contact.whatsapp} target="_blank">
         <WhatsIcon
           src={WhatsSVG}
           alt="Link para o WhatsApp Sul Minas"

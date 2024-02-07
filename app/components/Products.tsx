@@ -1,17 +1,18 @@
 "use client";
 import Image from "next/image";
 import styled from "styled-components";
-import Bebedouros from '@/public/bebedouro.png'
-import Filtro from '@/public/filtro.png'
-import KF02B from '@/public/KF02B.png'
-import KF02 from '@/public/KF02.png'
-import KF05 from '@/public/KF05.png'
-import KF10 from '@/public/KF10.png'
-import Shape from '@/public/shape-works.png'
-import CubaPhoto from '@/public/cuba.png'
+import Bebedouros from '@/public/img/bebedouro.png'
+import Filtro from '@/public/img/filtro.png'
+import KF02B from '@/public/img/KF02B.png'
+import KF02 from '@/public/img/KF02.png'
+import KF05 from '@/public/img/KF05.png'
+import KF10 from '@/public/img/KF10.png'
+import Shape from '@/public/img/shape-works.png'
+import CubaPhoto from '@/public/img/cuba.png'
 import { useEffect, useRef, useState } from "react";
 import { useScroll } from "./useScroll";
-import { Slide } from "@mui/material";
+import SlideUp from "./SlideUp";
+import { contact } from "./data";
 
 export default function Products(){
     const { scrollPosition } = useScroll()
@@ -23,19 +24,17 @@ export default function Products(){
         positionY = t.current.offsetTop
       }
      useEffect(() => {
-        if(positionY < (scrollPosition + 400)){
+        if(positionY < (scrollPosition + 600)){
             setChecked(true)
         }
      },[scrollPosition]) 
 
     return(
-        <Slide 
-            direction="up" 
-            in={checked} 
-            {...(checked ? { timeout: 1000 } : {})}
-        >
         <Container id="nosso-trabalho" ref={t}>
-            <h2>Trabalhamos com</h2>
+            <SlideUp checked={checked} timeout={2000}>
+                <h2>Trabalhamos com</h2>
+            </SlideUp>
+            <SlideUp checked={checked} timeout={2000}>
             <div className="block">
                 <WorkItem>
                     <Img src={Bebedouros} alt="Sul Minas - Bebedouros" />
@@ -53,7 +52,11 @@ export default function Products(){
                     <p>Produtos resistentes de alta durabilidade!</p>
                 </CubaItem>
             </div>
-            <h2>Bebedouros</h2>
+            </SlideUp>
+            <SlideUp checked={checked} timeout={3000}>
+                <h2>Bebedouros</h2> 
+            </SlideUp>
+            <SlideUp checked={checked} timeout={3000}>
             <div className="block">
                 <Beb>
                     <Img src={KF02B} alt="Sul Minas - KF02B" />
@@ -76,10 +79,10 @@ export default function Products(){
                     <p>50 Litros coluna</p>
                 </Beb>
             </div>
-            <a>Solicitar orçamento</a>
+            </SlideUp>
+            <a href={contact.whatsapp} target="_blank">Solicitar orçamento</a>
             <Image style={{width: "100%", height: "auto"}} src={Shape} alt="Sul Minas - Orçamento" />
         </Container>
-        </Slide>
     )
 }
 
@@ -95,6 +98,10 @@ const Container = styled.section`
         text-align: center;
         font-size: 58px;
         padding-bottom: 20px;
+
+        @media(max-width: 800px){
+            font-size: 42px;
+        }
     }
 
     .block {
@@ -133,21 +140,23 @@ const Container = styled.section`
             }
     
             @media(max-width: 800px){
-                padding-left: 40px;
-                padding-right: 40px;
-                margin-left: 20px;
-                margin-right: 20px;
+                padding-left: 0px;
+                padding-right: 0px;
+                width: 90%;
+                position: relative;
+                bottom: 30px;
             }
         }
     }
 
     @media(max-width: 740px){
-        
+
         h2 {
             padding-left: 20px;
             padding-right: 20px;
             font-size: 52px;
         }
+
     }
 `
 
@@ -166,6 +175,11 @@ const WorkItem = styled.div`
     img {
         aspect-ratio: 3/3;
         object-fit: contain;
+    }
+
+    @media(max-width: 800px){
+        padding-bottom: 30px;
+        margin-bottom: 0;
     }
 `
 
@@ -186,11 +200,15 @@ const Beb = styled.div`
         aspect-ratio: 3/3;
         object-fit: contain;
     }
+
+    @media(max-width: 800px){
+        padding-bottom: 30px;
+    }
 `
 
 const CubaItem = styled(WorkItem)`
     position: relative;
-    bottom: 80px;
+    bottom: 90px;
 `
 
 
@@ -208,7 +226,7 @@ const Cuba = styled(Image)`
     width: 350px;
     height: auto;
     position: relative;
-    bottom: 40px;
+    bottom: -55px;
 
     @media(max-width: 740px){
         width: 100%;
