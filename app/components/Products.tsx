@@ -76,7 +76,7 @@ export default function Products(){
                 <Beb>
                     <Img src={KF10} alt="Sul Minas - KF10" />
                     <h3>KF10</h3>
-                    <p>50 Litros coluna</p>
+                    <p>100 Litros coluna</p>
                 </Beb>
             </div>
             </SlideUp>
