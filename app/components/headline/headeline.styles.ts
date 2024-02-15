@@ -65,7 +65,7 @@ export const InputText = styled.input`
     padding-left: 10px;
 `
 
-export const ButtonHeadline = styled.a`
+export const ButtonHeadline = styled.button`
     background-color: #07333d;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -91,7 +91,7 @@ export const ButtonHeadline = styled.a`
     @media(max-width: 800px){
         padding-left: 0px;
         padding-right: 0px;
-        display: block;
+        width: 100%;
     }
 `
 

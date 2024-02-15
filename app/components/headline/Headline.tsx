@@ -10,7 +10,46 @@ export default function Headline(){
         name: "",
         wpp: 0
     })
-    const message = `Olá, vim do contato do site. Meu nome é ${state.name} e meu número é ${state.wpp}. Gostaria de mais informações.`
+    const [error, setError] = useState({
+        type: "",
+        message: ""
+    })
+   
+    var message = `Olá, vim do contato do site. Meu nome é ${state.name} e meu número é ${state.wpp}. Gostaria de mais informações.`
+    
+    const handleSend = () => {
+        const phoneRegex = /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)(?:((?:9\s?\d|[2-9])\d{3})\-?(\d{4}))$/
+        const phoneVerify = String(state.wpp).match(phoneRegex)
+
+        if(state.name === ""){
+            return setError({
+                type: "name",
+                message: "Preencha seu nome"
+            })
+        }
+        if(state.name.length <= 3){
+            return setError({
+                type: "name",
+                message: "O nome precisa ter no mínimo 3 caracteres"
+            })
+        }
+
+        if(state.wpp === 0){
+            return setError({
+                type: "phone",
+                message: "O número de telefone não é válido"
+            })
+        }
+
+        if(!phoneVerify){
+            return setError({
+                type: "phone",
+                message: "O número de telefone não é válido"
+            })
+        }
+
+        return window.open(`https://api.whatsapp.com/send?phone=554891353109&text=${message}`, '_blank')
+    }
 
     return(
             <Slide
@@ -31,12 +70,19 @@ export default function Headline(){
                 <TextDestack>Preencha o formulário abaixo e garanta um atendimento personalizado</TextDestack>
                 <InputBox>
                     <TextField 
+                        error={error.type === "name"}
+                        helperText={error.type === "name" ? error.message : null}
                         style={{backgroundColor: "#fff", borderRadius: 5, width: 339, marginBottom: 5}} 
                         size="small" 
                         placeholder="Seu nome" 
-                        onChange={(e) => setState({...state, name: e.target.value})}
+                        onChange={(e) => {
+                            setState({...state, name: e.target.value})
+                            setError({message: "", type: ""})
+                        }}
                     /><br />
                     <TextField 
+                        error={error.type === "phone"}
+                        helperText={error.type === "phone" ? error.message : null}
                         sx={{
                             backgroundColor: "#fff", 
                             borderRadius: 1.2, 
@@ -49,10 +95,12 @@ export default function Headline(){
                         size="small" 
                         type="number"
                         placeholder="Seu whatsapp" 
-                        onChange={(e) => setState({...state, wpp: Number(e.target.value)})}
+                        onChange={(e) => {
+                            setError({message: "", type: ""})
+                            setState({...state, wpp: Number(e.target.value)})}}
                     />
                 </InputBox>
-                <ButtonHeadline href={`https://api.whatsapp.com/send?phone=554891353109&text=${message}`}>Solicitar orçamento</ButtonHeadline>
+                <ButtonHeadline onClick={handleSend}>Solicitar orçamento</ButtonHeadline>
             </Content>
             <ImgHeadline src={HeadlinePhoto} alt="" />
         </HeadlineContainer>

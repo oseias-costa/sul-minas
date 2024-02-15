@@ -77,18 +77,22 @@ export const FooterContainer = styled.footer`
         text-transform: uppercase;
         padding-bottom: 1em;
     
-}
-.Footer__Item-nav > a{
-    padding-bottom: .7em;
-    font-weight: 700;
-    color: #fff;
-    transition: .1s linear;
-
-    &:hover {
-        color: #006E84;
     }
-}
+    .Footer__Item-nav > a{
+        padding-bottom: .7em;
+        font-weight: 700;
+        color: #fff;
+        transition: .1s linear;
 
+        &:hover {
+            color: #006E84;
+        }
+
+    }
+    
+    @media(max-width: 740px){
+        padding-left: 20px;
+    }
 
 
 .Footer__Item-adress{
